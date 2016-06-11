@@ -1,8 +1,7 @@
 #libws2812\_avr
 A library for avr microcontrollers to control WS2812 leds
 
-##Documentation
-can be generated with `make docs`
+Run `make` to build library, examples and docs.
 
 ##License
 This project is licensed under GPLv2.
