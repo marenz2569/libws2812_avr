@@ -8,6 +8,7 @@ fi
 rm -rf html &&\
 	make docs &&\
 	cd html &&\
+	git checkout gh-pages &&\
 	git add * &&\
 	git commit -am "$1" &&\
 	git push origin gh-pages
