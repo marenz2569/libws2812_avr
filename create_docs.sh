@@ -5,9 +5,7 @@ if [[ -z "$1" ]]; then
 	exit
 fi
 
-cd html &&\
-	rm -rf * &&\
-	cd .. &&\
+rm -rf html &&\
 	make docs &&\
 	cd html &&\
 	git add * &&\
