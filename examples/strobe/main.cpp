@@ -30,9 +30,6 @@ int main(void)
 
 	Color strobe;
 
-#define on 0.0,1.0,1.0
-#define off 0.0,0.0,0.0
-
 	uint8_t i;
 
 	for (;;) {
