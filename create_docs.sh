@@ -10,5 +10,6 @@ cd html &&\
 	cd .. &&\
 	make docs &&\
 	cd html &&\
+	git add * &&\
 	git commit -am "$1" &&\
 	git push origin gh-pages
