@@ -119,4 +119,28 @@ public:
 
 };
 
+/**
+ * A class is used to fade from the color to a grayscale with i = deltaI / 2 to the second color
+ */
+class FadeThroughIAxis {
+private:
+	uint16_t step_count;
+
+	uint16_t cur_step;
+
+	float from_step_count, to_step_count;
+
+	float h_from_step, s_from_step, i_from_step;
+
+	float h_to_step, s_to_step, i_to_step;
+
+	Color cCur;
+public:
+	FadeThroughIAxis(Color& cFrom, Color& cTo, uint16_t stepCount);
+
+	uint8_t next(void);
+
+	Color get_cur_color(void);
+};
+
 #endif

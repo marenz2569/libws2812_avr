@@ -15,42 +15,34 @@
  * if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-#include <stdlib.h>
+#include <math.h>
 
-#include "ws2812.h"
+#include "color.h"
 
-WS2812::WS2812(uint16_t num_leds)
+/* derived form http://www.cse.usf.edu/~mshreve/rgb-to-hsi */
+void Color::rgb2hsi(uint8_t r_, uint8_t g_, uint8_t b_)
 {
-	count_led = num_leds;
-	
-	pixels = (uint8_t*)malloc(count_led*3);
-}
+	r = r_;
+	g = g_;
+	b = b_;
 
-void WS2812::sync(void)
-{
-	*ws2812_port_reg |= pinMask;
-	ws2812_sendarray_mask(pixels,3*count_led,pinMask,(uint8_t*) ws2812_port,(uint8_t*) ws2812_port_reg);
-}
+	float h_, s_, i_;
+	i_ = (float)(r_ + g_ + b_) / 3.0 / 255.0;
 
-/* &PORTB, &DDRB, DDB2 */
-void WS2812::set_output(const volatile uint8_t* port, volatile uint8_t* reg, uint8_t pin)
-{
-	pinMask = (1<<pin);
-	ws2812_port = port;
-	ws2812_port_reg = reg;
-}
+	/* normalize rgb values */
+	float sum = r_ + g_ + b_;
+	float n_r = (float) r_ / sum;
+	float n_g = (float) g_ / sum;
+	float n_b = (float) b_ / sum;
 
-uint8_t WS2812::set_rgb_at(uint16_t index, Color &pixel)
-{
-	if (index < count_led) {
-		uint16_t tmp;
-		tmp = index * 3;
+	h_ = acos(0.5 * ((n_r - n_g) + (n_r - n_b)) / sqrt(pow((n_r - n_g), 2.0) + ((n_r - n_b) * (n_g - n_b))));
 
-		pixels[OFFSET_R(tmp)] = pixel.r;
-		pixels[OFFSET_G(tmp)] = pixel.g;
-		pixels[OFFSET_B(tmp)] = pixel.b;
+	if (n_b > n_g)
+		h_ = 2 * M_PI - h_;
 
-		return 1;
-	}
-	return 0;
+	s_ = 1 - 3 * fmin(n_r, fmin(n_g, n_b));
+
+	h = h_ * 180.0 / M_PI;
+	s = s_;
+	i = i_;
 }
