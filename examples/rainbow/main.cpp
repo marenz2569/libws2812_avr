@@ -19,14 +19,14 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#include "ws2812.h"
+#include <ws2812.h>
 
 #define LED_C	4
 
 int main(void)
 {
 	WS2812 led(LED_C);
-	led.set_output(&PORTB, &DDRB, DDB2);
+	led.set_output(&PORTB, &DDRB, DDB1);
 
 	Color ledColor;
 
@@ -43,7 +43,7 @@ int main(void)
 		for (j=0;j<LED_C;j++)
 			led.set_rgb_at(j, ledColor);
 		led.sync();
-		
+
 		_delay_us(delay);
 
 		h += hue_step;

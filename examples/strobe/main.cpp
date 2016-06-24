@@ -19,7 +19,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#include "ws2812.h"
+#include <ws2812.h>
 
 #define LED_C 4
 

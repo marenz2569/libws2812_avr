@@ -19,27 +19,30 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#include "ws2812.h"
-#include "color.h"
+#include <ws2812.h>
 
 int main(void)
 {
 #define LED_C 4
 	WS2812 led(LED_C);
-	led.set_output(&PORTB, &DDRB, DDB2);
+	led.set_output(&PORTB, &DDRB, DDB1);
 
 	Color redColor;
-	redColor.hsi2rgb(0.0, 1.0, 1.0);
+	redColor.h = 0.0;
+	redColor.s = 1.0;
+	redColor.i = 1.0;
 	Color cyanColor;
-	cyanColor.hsi2rgb(180.0, 0.5, 0.3);
+	cyanColor.h = 180.0;
+	cyanColor.s = 0.5;
+	cyanColor.i = 0.3;
 	Color curColor;
 
 #define hue_step 0.00625
 #define delay 125
 #define fade_1_8 ((uint16_t)(360.0 / hue_step / 4.0))
 
-	FadeLinear r2c(redColor, cyanColor, fade_1_8);
-	FadeLinear c2r(cyanColor, redColor, fade_1_8);
+	FadeLinear r2c(redColor, cyanColor, fade_1_8, clockwise);
+	FadeLinear c2r(cyanColor, redColor, fade_1_8, clockwise);
 	FadeLinear fade = r2c;
 
 	bool mode = false;
