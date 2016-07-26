@@ -40,6 +40,22 @@ class Color
 			return false;
 		return true;
 	}
+
+	/**
+	 * check if the rgb values of 2 Color objecs are not the same
+	 * @param a first Color object
+	 * @param b second Color object
+	 */
+	friend bool operator !=(Color a, Color b)
+	{
+		if (a.r != b.r)
+			return true;
+		if (a.g != b.g)
+			return true;
+		if (a.b != b.b)
+			return true;
+		return false;
+	}
 public:
 	/**
 	 * red value
