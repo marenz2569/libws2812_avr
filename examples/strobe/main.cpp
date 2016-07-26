@@ -21,12 +21,12 @@
 
 #include <ws2812.h>
 
-#define LED_C 4
+#define LED_C 58
 
 int main(void)
 {
 	WS2812 led(LED_C);
-	led.set_output(&PORTB, &DDRB, DDB2);
+	led.set_output(&PORTB, &DDRB, DDB1);
 
 	Color strobe;
 
