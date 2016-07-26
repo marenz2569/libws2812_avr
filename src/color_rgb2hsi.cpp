@@ -26,11 +26,11 @@ void Color::rgb2hsi(uint8_t r_, uint8_t g_, uint8_t b_)
 	g = g_;
 	b = b_;
 
-	float h_, s_, i_;
-	i_ = (float)(r_ + g_ + b_) / 3.0 / 255.0;
+	float h_, s_, i_, sum;
+	sum = (float) (r_ + g_ + b_);
+	i_ = sum / 255.0;
 
 	/* normalize rgb values */
-	float sum = r_ + g_ + b_;
 	float n_r = (float) r_ / sum;
 	float n_g = (float) g_ / sum;
 	float n_b = (float) b_ / sum;

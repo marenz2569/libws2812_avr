@@ -18,7 +18,7 @@
 #include <math.h>
 
 #include "color.h"
-#include "macros.h"
+#include "ws2812_avr_macros.h"
 
 /* derived from http://fourier.eng.hmc.edu/e161/lectures/ColorProcessing/node3.html */
 void Color::hsi2rgb(float h_, float s_, float i_)
@@ -56,9 +56,9 @@ void Color::hsi2rgb(float h_, float s_, float i_)
 			r_ = 1 - g_ - b_;
 		}
 
-		r_ = 3 * i_ * r_ * 255;
-		g_ = 3 * i_ * g_ * 255;
-		b_ = 3 * i_ * b_ * 255;
+		r_ =  i_ * r_ * 255;
+		g_ =  i_ * g_ * 255;
+		b_ =  i_ * b_ * 255;
 
 		/* clamp r, g and b to interval [0:255] */
 		r = clamp_to_0_255(r_);

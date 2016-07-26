@@ -18,7 +18,7 @@
 #include <math.h>
 
 #include "color.h"
-#include "macros.h"
+#include "ws2812_avr_macros.h"
 
 FadeThroughIAxis::FadeThroughIAxis(Color& cFrom, Color& cTo, uint16_t stepCount) : step_count(stepCount), cur_step(0), cCur(cFrom)
 {

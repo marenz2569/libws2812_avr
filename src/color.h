@@ -25,6 +25,21 @@
  */
 class Color
 {
+	/**
+	 * check if the rgb values of 2 Color objects are the same
+	 * @param a first Color object
+	 * @param b second Color object
+	 */
+	friend bool operator ==(Color a, Color b)
+	{
+		if (a.r != b.r)
+			return false;
+		if (a.g != b.g)
+			return false;
+		if (a.b != b.b)
+			return false;
+		return true;
+	}
 public:
 	/**
 	 * red value

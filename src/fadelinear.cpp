@@ -18,7 +18,7 @@
 #include <math.h>
 
 #include "color.h"
-#include "macros.h"
+#include "ws2812_avr_macros.h"
 
 FadeLinear::FadeLinear(Color &cFrom, Color &cTo, uint16_t stepCount, color_fade_dir_t fadeDir) : step_count(stepCount), cCur(cFrom), cur_step(0)
 {
