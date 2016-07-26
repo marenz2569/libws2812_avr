@@ -5,7 +5,7 @@ LIB		= ws2812_avr
 LIBS		= -lws2812_avr
 LIBDIR		= -Llib
 LIBINCLUDE	= -Ilib/ws2812_avr
-EXAMPLES	= fade_red_cyan rainbow strobe fade_i_axis_red_cyan
+EXAMPLES	= fade_red_cyan rainbow strobe fade_i_axis_red_cyan change_lights
 
 COMPILE		= avr-g++ -Os -DF_CPU=$(CLOCK) -mmcu=$(DEVICE) -std=c++11 -fno-exceptions
 
